@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import personService from "../services/personService";
 import { FaTrash } from "react-icons/fa";
 
-function PersonList({ persons, setPersons }) {
+function PersonList() {
+  const [persons, setPersons] = useState([]);
   useEffect(() => {
     personService
       .getPersons()
@@ -28,7 +29,7 @@ function PersonList({ persons, setPersons }) {
         <caption className="bg-black text-white sm:text-xl ">Contacts</caption>
 
         <tbody className="bg-white sm:text-xl ">
-          {persons.map((person, id) => (
+          {persons.map((person) => (
             <tr key={person.id} className="md:text-2xl ">
               <td>{person.name}</td>
               <td className="flex items-center justify-between md:text-2xl">
@@ -44,7 +45,13 @@ function PersonList({ persons, setPersons }) {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table>{" "}
+      {/* <ul>
+        {persons.map((person) => {
+          <li key={person.id}>{person}</li>;
+        })}
+      </ul>
+      <div>PersornForm</div> */}
     </>
   );
 }
